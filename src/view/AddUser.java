@@ -5,6 +5,12 @@
  */
 package view;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.Data;
+import model.Queries;
+import model.ThreadUser;
+
 /**
  *
  * @author fields
@@ -27,21 +33,154 @@ public class AddUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton2 = new javax.swing.JButton();
+        nameTxt = new javax.swing.JTextField();
+        lastnameTxt = new javax.swing.JTextField();
+        usrNameTxt = new javax.swing.JTextField();
+        pdwConfPass = new javax.swing.JPasswordField();
+        pwdPass = new javax.swing.JPasswordField();
+        registroBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        loginBtn = new javax.swing.JButton();
+        atrasBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 823, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
-        );
+        jButton2.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
+        jButton2.setText("Logueate");
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setFocusPainted(false);
+        jButton2.setOpaque(true);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registrar usuario");
+        setMinimumSize(new java.awt.Dimension(350, 620));
+        setPreferredSize(new java.awt.Dimension(350, 620));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        nameTxt.setFont(new java.awt.Font("Bahnschrift", 1, 13)); // NOI18N
+        nameTxt.setForeground(new java.awt.Color(255, 255, 255));
+        nameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        nameTxt.setOpaque(false);
+        getContentPane().add(nameTxt);
+        nameTxt.setBounds(50, 130, 250, 40);
+
+        lastnameTxt.setFont(new java.awt.Font("Bahnschrift", 1, 13)); // NOI18N
+        lastnameTxt.setForeground(new java.awt.Color(255, 255, 255));
+        lastnameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Apellidos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        lastnameTxt.setOpaque(false);
+        getContentPane().add(lastnameTxt);
+        lastnameTxt.setBounds(50, 190, 250, 40);
+
+        usrNameTxt.setFont(new java.awt.Font("Bahnschrift", 1, 13)); // NOI18N
+        usrNameTxt.setForeground(new java.awt.Color(255, 255, 255));
+        usrNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        usrNameTxt.setOpaque(false);
+        getContentPane().add(usrNameTxt);
+        usrNameTxt.setBounds(50, 250, 250, 40);
+
+        pdwConfPass.setFont(new java.awt.Font("Bahnschrift", 1, 13)); // NOI18N
+        pdwConfPass.setForeground(new java.awt.Color(255, 255, 255));
+        pdwConfPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Repetir Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        pdwConfPass.setOpaque(false);
+        getContentPane().add(pdwConfPass);
+        pdwConfPass.setBounds(50, 370, 250, 40);
+
+        pwdPass.setFont(new java.awt.Font("Bahnschrift", 1, 13)); // NOI18N
+        pwdPass.setForeground(new java.awt.Color(255, 255, 255));
+        pwdPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        pwdPass.setOpaque(false);
+        getContentPane().add(pwdPass);
+        pwdPass.setBounds(50, 310, 250, 40);
+
+        registroBtn.setBorderPainted(false);
+        registroBtn.setContentAreaFilled(false);
+        registroBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registroBtn.setFocusPainted(false);
+        registroBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(registroBtn);
+        registroBtn.setBounds(30, 480, 290, 50);
+
+        jLabel2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Ya tengo una cuenta");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(80, 540, 130, 16);
+
+        loginBtn.setBorderPainted(false);
+        loginBtn.setContentAreaFilled(false);
+        loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginBtn.setFocusPainted(false);
+        getContentPane().add(loginBtn);
+        loginBtn.setBounds(220, 540, 50, 30);
+
+        atrasBtn.setBorderPainted(false);
+        atrasBtn.setContentAreaFilled(false);
+        atrasBtn.setFocusPainted(false);
+        atrasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(atrasBtn);
+        atrasBtn.setBounds(10, 0, 40, 30);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/signUpScreen.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 350, 580);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroBtnActionPerformed
+        Data d = new Data();
+        Queries q = new Queries();
+
+        if ("".equals(nameTxt.getText()) || "".equals(pwdPass.getText()) || "".equals(pdwConfPass.getText()) || "".equals(nameTxt.getText()) || "".equals(lastnameTxt.getText())) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "ERROR", WIDTH);
+        } else {
+
+            if (!pwdPass.getText().equals(pdwConfPass.getText())) {
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "ERROR", WIDTH);
+            } else {
+
+                if (q.checkUsr(usrNameTxt.getText()) == 1) {
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe", "ERROR", WIDTH);
+                } else {
+                    d.setName(nameTxt.getText());
+                    d.setLastname(lastnameTxt.getText());
+                    d.setPw(pwdPass.getText());
+                    d.setUsername(usrNameTxt.getText());
+                    ThreadUser tt = new ThreadUser(d, q);
+                    Thread processTemp = new Thread(tt);
+                    processTemp.start();
+                    this.dispose();
+                    Login l = new Login();
+                    l.setVisible(true);
+                    l.setLocationRelativeTo(null);
+                    l.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                }
+            }
+        }
+
+
+    }//GEN-LAST:event_registroBtnActionPerformed
+
+    private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
+       this.dispose();
+       Login l = new Login();
+       l.setVisible(true);
+       l.setLocationRelativeTo(null);
+       l.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_atrasBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +218,16 @@ public class AddUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atrasBtn;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField lastnameTxt;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JPasswordField pdwConfPass;
+    private javax.swing.JPasswordField pwdPass;
+    private javax.swing.JButton registroBtn;
+    private javax.swing.JTextField usrNameTxt;
     // End of variables declaration//GEN-END:variables
 }

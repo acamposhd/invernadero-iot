@@ -21,8 +21,9 @@ public class InvernaderoIot {
         /*Login l = new Login();
         l.show();
         */
-        MainScreen m = new MainScreen();
-        m.show();
+        Login l = new Login();
+        l.setVisible(true);
+        l.setLocationRelativeTo(null);
     }
     
 }

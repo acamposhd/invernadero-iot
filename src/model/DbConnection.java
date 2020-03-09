@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package model;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -16,14 +16,15 @@ import javax.swing.JOptionPane;
 public class DbConnection {
     private static final String USER ="root";
     private static final String PASSWORD="";
-    private static final String DB ="sensores";
-    private static final String URL = "jdbc:mysql://localhost:3306/"+DB;
+    private static final String DB ="iot";
+    private static final String URL = "jdbc:mysql://localhost:3306/"+DB+"?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     
     public static Connection con = null;
     
     public static Connection connect(){
         try{
-            con = (Connection) DriverManager.getConnection(URL ,USER, PASSWORD);
+            
+            Connection con = DriverManager.getConnection(URL ,USER, PASSWORD);
             return con;
         }catch(SQLException ex){
             System.out.println(ex);

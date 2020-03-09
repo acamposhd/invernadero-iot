@@ -27,18 +27,67 @@ public class OwnerInfo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(705, 537));
+        setPreferredSize(new java.awt.Dimension(705, 537));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        jButton1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        jButton1.setText("Documentación");
+        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(280, 150, 160, 40);
+
+        jButton2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        jButton2.setText("Manual");
+        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton2);
+        jButton2.setBounds(280, 110, 160, 40);
+
+        jButton3.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        jButton3.setText("Presentación");
+        jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton3);
+        jButton3.setBounds(280, 270, 160, 40);
+
+        jButton4.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        jButton4.setText("Diagrama");
+        jButton4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton4);
+        jButton4.setBounds(280, 310, 160, 40);
+
+        jButton5.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        jButton5.setText("Ejercicios");
+        jButton5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton5);
+        jButton5.setBounds(280, 350, 160, 40);
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/logOut.png"))); // NOI18N
+        jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setFocusPainted(false);
+        jButton6.setOpaque(false);
+        getContentPane().add(jButton6);
+        jButton6.setBounds(590, 30, 106, 33);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/iotWall_rezized.jpg"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 700, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +128,12 @@ public class OwnerInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

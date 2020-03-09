@@ -5,6 +5,18 @@
  */
 package view;
 
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
+import com.panamahitek.PanamaHitek_MultiMessage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
+import jssc.SerialPortException;
+import model.Data;
+import model.Queries;
 
 /**
  *
@@ -12,13 +24,55 @@ package view;
  */
 public class Login extends javax.swing.JFrame {
 
+    int i;
     /**
      * Creates new form landing
      */
+
+    PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
+    PanamaHitek_MultiMessage multi = new PanamaHitek_MultiMessage(7, ino);
+    SerialPortEventListener listener = new SerialPortEventListener() {
+        @Override
+        public void serialEvent(SerialPortEvent spe) {
+
+            try {
+                if (multi.dataReceptionCompleted()) {
+
+                    i++;
+
+                    String rfidValue = (multi.getMessage(6));
+                    multi.flushBuffer();
+                    if ("Alberto".equals(rfidValue) || "Emiliano".equals(rfidValue)) {
+                        ino.flushSerialPort();
+                        ino.killArduinoConnection();
+                        MainScreen m = new MainScreen();
+                        m.setVisible(true);
+                        m.setLocationRelativeTo(null);
+                        m.userLbl.setText(rfidValue);
+//                        Login l = new Login();
+                        dispose();
+                    }
+
+                }
+            } catch (ArduinoException ex) {
+                Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SerialPortException ex) {
+                Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+        }
+
+    };
+
     public Login() {
-        
-        
+
         initComponents();
+        try {
+            ino.arduinoRXTX("COM4", 9600, listener);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -30,14 +84,12 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        loginBtn = new javax.swing.JButton();
+        OwnerInfo = new javax.swing.JButton();
         usernameJtxt = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        passTxt = new javax.swing.JPasswordField();
+        signUpBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Invernadero IOT");
@@ -45,44 +97,31 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/signup_btn.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setOpaque(false);
-        getContentPane().add(jButton1);
-        jButton1.setBounds(660, 440, 130, 137);
+        loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/loginBtn.png"))); // NOI18N
+        loginBtn.setBorder(null);
+        loginBtn.setBorderPainted(false);
+        loginBtn.setContentAreaFilled(false);
+        loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginBtn.setFocusPainted(false);
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(loginBtn);
+        loginBtn.setBounds(250, 350, 320, 60);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/login_btn.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.setOpaque(false);
-        getContentPane().add(jButton2);
-        jButton2.setBounds(350, 340, 130, 130);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Iniciar sesión");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(370, 480, 100, 20);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Agregar usuario");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(660, 570, 120, 20);
-
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setFocusPainted(false);
-        jButton3.setOpaque(false);
-        getContentPane().add(jButton3);
-        jButton3.setBounds(10, 540, 410, 40);
+        OwnerInfo.setBorderPainted(false);
+        OwnerInfo.setContentAreaFilled(false);
+        OwnerInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        OwnerInfo.setFocusPainted(false);
+        OwnerInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OwnerInfoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(OwnerInfo);
+        OwnerInfo.setBounds(10, 540, 410, 40);
 
         usernameJtxt.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         usernameJtxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,20 +131,96 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(usernameJtxt);
         usernameJtxt.setBounds(260, 240, 300, 40);
 
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("Password");
-        jPasswordField1.setToolTipText("Password");
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
-        jPasswordField1.setOpaque(false);
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(260, 290, 300, 40);
+        passTxt.setForeground(new java.awt.Color(255, 255, 255));
+        passTxt.setToolTipText("Password");
+        passTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        passTxt.setOpaque(false);
+        getContentPane().add(passTxt);
+        passTxt.setBounds(270, 290, 300, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/landing_wall.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 820, 600);
+        signUpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/signup_btn.png"))); // NOI18N
+        signUpBtn.setText("jButton1");
+        signUpBtn.setBorderPainted(false);
+        signUpBtn.setContentAreaFilled(false);
+        signUpBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(signUpBtn);
+        signUpBtn.setBounds(250, 420, 320, 50);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/landing_wall.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 810, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+
+        Data d = new Data();
+        Queries q = new Queries();
+        d.setUsername(usernameJtxt.getText());
+        d.setPw(passTxt.getText());
+        if (q.login(d) != 0) {
+            try {
+                ino.flushSerialPort();
+                ino.killArduinoConnection();
+            } catch (SerialPortException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+
+            } catch (ArduinoException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            MainScreen main = new MainScreen();
+            main.setVisible(true);
+            main.setLocationRelativeTo(null);
+            main.userLbl.setText(usernameJtxt.getText());
+            usernameJtxt.setText("");
+            passTxt.setText("");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "LOGIN ERROR", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void OwnerInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OwnerInfoActionPerformed
+
+        try {
+            ino.flushSerialPort();
+            ino.killArduinoConnection();
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        OwnerInfo o = new OwnerInfo();
+        o.setVisible(true);
+        o.setLocationRelativeTo(null);
+        o.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dispose();
+    }//GEN-LAST:event_OwnerInfoActionPerformed
+
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        try {
+            ino.flushSerialPort();
+            ino.killArduinoConnection();
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        AddUser au = new AddUser();
+        au.setVisible(true);
+        au.setLocationRelativeTo(null);
+        au.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dispose();
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,16 +236,24 @@ public class Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -146,13 +269,12 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton OwnerInfo;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
+    public javax.swing.JButton loginBtn;
+    private javax.swing.JPasswordField passTxt;
+    private javax.swing.JButton signUpBtn;
     private javax.swing.JTextField usernameJtxt;
     // End of variables declaration//GEN-END:variables
+
 }
